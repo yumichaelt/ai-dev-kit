@@ -1,0 +1,39 @@
+# Build artifacts
+.next/
+dist/
+build/
+out/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Lock files (huge, AI doesn't need them)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+poetry.lock
+
+# Build info
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Deployment
+.vercel/
+.netlify/
+.serverless/
+
+# Large reference files (add project-specific ones below)
+# fashn_ai.html
+# docs/api-dump.json
