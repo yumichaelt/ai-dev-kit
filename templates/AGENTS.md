@@ -22,6 +22,43 @@
 
 ---
 
+# Skill Usage (when superpowers is installed)
+
+If the following skills are available in this environment, use them automatically:
+
+## Always invoke before starting work
+- **`brainstorming`** — Use BEFORE any creative work (new features, components, behavior changes). Explores intent and requirements before code is written.
+- **`writing-plans`** — Use AFTER brainstorming when the task is multi-step. Produces an executable plan with verification checkpoints.
+
+## Invoke during execution
+- **`test-driven-development`** — Use when implementing any feature or bugfix. Red -> green -> refactor.
+- **`systematic-debugging`** — Use whenever you hit a bug, test failure, or unexpected behavior. Do this BEFORE proposing fixes.
+- **`subagent-driven-development`** — Use when executing a plan with independent tasks in the current session.
+- **`dispatching-parallel-agents`** — Use when 2+ tasks are independent and can run in parallel.
+- **`using-git-worktrees`** — Use when starting feature work that needs isolation from the current workspace.
+
+## Invoke before declaring done
+- **`verification-before-completion`** — Use BEFORE claiming work is complete, fixed, or passing. Run actual verification commands and confirm output. Evidence before assertions, always.
+- **`requesting-code-review`** — Use when completing tasks or before merging. Verify work meets requirements.
+- **`simplify`** — Use after implementation to review for reuse, quality, and efficiency. Fix issues found.
+
+## Custom workflows in this kit
+- **`/critique`** — Adversarial self-review (see `.agents/workflows/critique.md`)
+- **`/research`** — Web research for new ideas and gaps (see `.agents/workflows/research.md`)
+- **`/devlog`** — Document the session (see `.agents/workflows/devlog.md`)
+- **`/deploy`** — Commit and push (see `.agents/workflows/deploy.md`)
+
+## Orchestration model (Opus + Sonnet)
+When the user is working with Claude Opus 4.6 as the primary model, Opus should act as the **orchestrator**:
+1. Opus runs `brainstorming` and `writing-plans` directly (planning work).
+2. Opus dispatches **Sonnet 4.6 subagents** via the `Agent` tool with `model: "sonnet"` for execution work (writing code, running tests, fixing lint issues).
+3. Opus runs `verification-before-completion`, `simplify`, and `/critique` directly (review work).
+4. Opus only intervenes in execution if a Sonnet subagent reports a blocker or returns unsatisfactory results.
+
+This split conserves Opus tokens for high-value reasoning while leveraging Sonnet's speed for mechanical execution.
+
+---
+
 # Structure Rules
 
 ## File Size Discipline
