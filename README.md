@@ -20,7 +20,6 @@ ai-dev-kit/
 │   ├── CLAUDE.md           # Claude Code project config
 │   └── .claudeignore       # Standard context exclusions
 ├── workflows/              # Reusable AI workflows
-│   ├── critique.md         # Adversarial self-review protocol
 │   ├── research.md         # Web research for gaps & new ideas
 │   ├── deploy.md           # Git push + deploy workflow
 │   └── devlog.md           # Session documentation
@@ -95,18 +94,39 @@ Informed by research and real-world practice:
 - **Scoped activation** ([Cursor .mdc](https://github.com/PatrickJS/awesome-cursorrules)): Load rules based on what you're touching, not everything always.
 - **Verification at every step** ([Spotify's Honk](https://engineering.atspotify.com/2025/11/context-engineering-background-coding-agents-part-2)): Tests and lints as feedback loops, not just final checks.
 
+## Recommended Companion Tools
+
+This kit is **methodology** — the rules, workflows, and lessons. Pair it with these tools for execution:
+
+| Tool | What It Does | Why You Want It |
+|------|-------------|----------------|
+| **Claude Code `/model opusplan`** | Native built-in: Opus plans, Sonnet executes | Free, zero-config token savings |
+| **[wshobson/agents](https://github.com/wshobson/agents)** | 182 prebuilt review/audit agents in 77 plugins | Production-quality review (security, accessibility, performance, observability) |
+| **[obra/superpowers](https://github.com/obra/superpowers)** | Skills framework (brainstorming, plans, TDD, debugging) | The plan-first methodology this kit builds on |
+
+**Recommended wshobson plugins** (install once, available everywhere):
+```bash
+/plugin marketplace add wshobson/agents
+/plugin install comprehensive-review@claude-code-workflows
+/plugin install security-scanning@claude-code-workflows
+/plugin install accessibility-compliance@claude-code-workflows
+/plugin install unit-testing@claude-code-workflows
+/plugin install observability-monitoring@claude-code-workflows
+```
+
 ## Standing on Shoulders
 
-This kit draws from and is compatible with:
+This kit draws from:
 
-| Project | Stars | What We Leverage |
-|---------|-------|-----------------|
-| [obra/superpowers](https://github.com/obra/superpowers) | 140k+ | Workflow methodology (plan, TDD, subagents) |
-| [AGENTS.md standard](https://github.com/agentsmd/agents.md) | 20k+ | The open standard for AI agent instructions |
-| [awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | 39k+ | Scoped rules patterns |
-| [repomix](https://github.com/yamadashy/repomix) | 23k+ | Codebase compression techniques |
-| [harness-engineering](https://github.com/jrenaldi79/harness-engineering) | — | Context engineering framework |
-| [claude-code-starter](https://github.com/lighthouse-strategy/claude-code-starter) | — | Practical skills library |
+| Project | What We Leverage |
+|---------|-----------------|
+| [obra/superpowers](https://github.com/obra/superpowers) | Workflow methodology (plan, TDD, subagents) |
+| [AGENTS.md standard](https://github.com/agentsmd/agents.md) | The open standard for AI agent instructions |
+| [awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | Scoped rules patterns |
+| [repomix](https://github.com/yamadashy/repomix) | Codebase compression techniques |
+| [harness-engineering](https://github.com/jrenaldi79/harness-engineering) | Context engineering framework |
+| [Spotify's Honk](https://engineering.atspotify.com/2025/11/context-engineering-background-coding-agents-part-2) | Constrained tools, verification loops |
+| [ETH Zurich AGENTS.md study (2026)](https://arxiv.org/html/2602.11988v1) | Minimal context principle |
 
 ## License
 

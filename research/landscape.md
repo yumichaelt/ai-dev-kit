@@ -6,6 +6,8 @@
 
 | Project | Stars | What It Does | Our Take |
 |---------|-------|-------------|----------|
+| **Claude Code `/model opusplan`** | native | Built-in mode: Opus plans, Sonnet executes. | Use this instead of building custom orchestration. Free, instant. |
+| [wshobson/agents](https://github.com/wshobson/agents) | 33k+ | 182 prebuilt agents in 77 plugins. Model-tier optimized (Opus/Sonnet/Haiku). | Recommended companion. Install 5 plugins for production-quality review. |
 | [obra/superpowers](https://github.com/obra/superpowers) | 140k+ | Complete agentic skills framework. Plan -> build -> test -> review. | Gold standard for workflow. We adopt the plan-first philosophy. |
 | [AGENTS.md standard](https://github.com/agentsmd/agents.md) | 20k+ | Open standard for AI agent instructions. Adopted by 60k+ repos. | We follow this standard for our template. |
 | [awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) | 39k+ | Largest collection of AI coding rules by stack. | Great source for stack-specific patterns. |

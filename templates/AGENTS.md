@@ -42,20 +42,31 @@ If the following skills are available in this environment, use them automaticall
 - **`requesting-code-review`** — Use when completing tasks or before merging. Verify work meets requirements.
 - **`simplify`** — Use after implementation to review for reuse, quality, and efficiency. Fix issues found.
 
+## Recommended plugins (wshobson/agents)
+For production-quality review and auditing, use these Claude Code plugins (install once, available in all projects):
+- **`comprehensive-review`** — Bundles `code-reviewer` + `security-auditor` + `architect-reviewer` (Opus tier). Use after completing any feature.
+- **`security-scanning`** — OWASP-aware security audit. Use before deploying anything that touches user data.
+- **`accessibility-compliance`** — WCAG checks. Use for any user-facing UI.
+- **`unit-testing`** — Test scaffolding and coverage analysis.
+- **`observability-monitoring`** — SLI/SLO, tracing, incident response. Use once you're live in production.
+
+Install:
+```
+/plugin marketplace add wshobson/agents
+/plugin install comprehensive-review@claude-code-workflows
+```
+
 ## Custom workflows in this kit
-- **`/critique`** — Adversarial self-review (see `.agents/workflows/critique.md`)
-- **`/research`** — Web research for new ideas and gaps (see `.agents/workflows/research.md`)
+- **`/research`** — Web research for new ideas and gaps in the kit itself (see `.agents/workflows/research.md`)
 - **`/devlog`** — Document the session (see `.agents/workflows/devlog.md`)
 - **`/deploy`** — Commit and push (see `.agents/workflows/deploy.md`)
 
-## Orchestration model (Opus + Sonnet)
-When the user is working with Claude Opus 4.6 as the primary model, Opus should act as the **orchestrator**:
-1. Opus runs `brainstorming` and `writing-plans` directly (planning work).
-2. Opus dispatches **Sonnet 4.6 subagents** via the `Agent` tool with `model: "sonnet"` for execution work (writing code, running tests, fixing lint issues).
-3. Opus runs `verification-before-completion`, `simplify`, and `/critique` directly (review work).
-4. Opus only intervenes in execution if a Sonnet subagent reports a blocker or returns unsatisfactory results.
+> Note: A custom `/critique` workflow used to live here but was removed because `comprehensive-review` from wshobson/agents covers the same ground better.
 
-This split conserves Opus tokens for high-value reasoning while leveraging Sonnet's speed for mechanical execution.
+## Model orchestration
+Use Claude Code's native **`/model opusplan`** mode. This automatically uses Opus for plan mode (high-judgment work) and Sonnet for execution (writing code). Zero config required.
+
+For finer control, define Claude Code subagents with `model: sonnet` in their frontmatter to delegate specific task types to Sonnet while the main Opus session handles planning and review. Anthropic's published research showed this pattern beats solo Opus by 90% on complex tasks.
 
 ---
 
